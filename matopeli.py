@@ -1,4 +1,4 @@
-# 'pip install PySide6' tarvitaan
+# 'pip install PySide6' tarvitaan 
 import sys
 import random
 from PySide6.QtWidgets import QApplication, QGraphicsView, QGraphicsScene, QMenu
