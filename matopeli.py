@@ -1,4 +1,6 @@
-# 'pip install PySide6' tarvitaan 
+# 'pip install PySide6' tarvitaan
+# Tämä on testi, terveisin Kai Katajisto
+
 import sys
 import random
 from PySide6.QtWidgets import QApplication, QGraphicsView, QGraphicsScene, QMenu
