@@ -67,15 +67,7 @@ class SnakeGame(QGraphicsView):
 
         # board limits
         if new_head in self.snake or not (0 <= new_head[0] < GRID_WIDTH) or not (0 <= new_head[1] < GRID_HEIGHT):
-<<<<<<< HEAD
-            self.timer.stop() 
-            self.game_started = False
-            self.game_over = True
-            self.scene().clear()
-            self.game_over_screen()
-=======
             self.timer.stop()
->>>>>>> 5df0f6db7ed644592c72df970e730bf6711b5bbd
             return
 
         self.snake.insert(0, new_head)
@@ -142,7 +134,6 @@ class SnakeGame(QGraphicsView):
             y = random.randint(0, GRID_HEIGHT - 1)
             if (x, y) not in self.snake:
                 return x, y
-
 def main():
     app = QApplication(sys.argv)
     game = SnakeGame()
