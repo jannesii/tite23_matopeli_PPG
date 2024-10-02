@@ -128,7 +128,7 @@ class SnakeGame(QGraphicsView):
         self.timer.stop()
         self.scene().clear()
         
-        game_over_text = self.scene().addText("               Game Over\nPress any key to start new game", QFont("Monospace", 20))
+        game_over_text = self.scene().addText(f"               Game Over\nPress any key to start new game\nYour score: {self.score}", QFont("Monospace", 20))
         text_width = game_over_text.boundingRect().width()
         text_height = game_over_text.boundingRect().height()
         text_x = (self.sceneRect().width() - text_width) / 5
