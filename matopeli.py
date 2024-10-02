@@ -27,13 +27,11 @@ class SnakeGame(QGraphicsView):
         self.game_started = False
         self.init_screen()
 
-
     def init_screen(self):
         start_text = self.scene().addText("Press any key to start", QFont("Arial", 18))
         text_width = start_text.boundingRect().width()
         text_x = (self.width() - text_width) / 5
         start_text.setPos(text_x, GRID_HEIGHT * CELL_SIZE / 2)
-
 
     def keyPressEvent(self, event):
         key = event.key()
@@ -83,15 +81,11 @@ class SnakeGame(QGraphicsView):
             x, y = segment
             self.scene().addRect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE,
                                  CELL_SIZE, QPen(Qt.black), QBrush(Qt.black))
-<<<<<<< HEAD
         # Print food
-=======
-        # print food
->>>>>>> 3cc37fc6c00121dc9fa80d15aa70dfab3cf11b59
         fx, fy = self.food
         self.scene().addRect(fx * CELL_SIZE, fy * CELL_SIZE, CELL_SIZE,
                              CELL_SIZE, QPen(Qt.black), QBrush(Qt.red))
-        
+
         # print score
         self.scene().addText(f"Score: {self.score}", QFont("Arial", 12))
 
@@ -100,7 +94,7 @@ class SnakeGame(QGraphicsView):
         self.snake = [(5, 5), (5, 6), (5, 7)]
         self.timer.start(300)
         self.food = self.spawn_food()
-        
+
         # For score calculation
         self.score = 0
 
