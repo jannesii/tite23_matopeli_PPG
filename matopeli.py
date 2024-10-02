@@ -23,7 +23,17 @@ class SnakeGame(QGraphicsView):
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.update_game)
 
-        self.start_game()
+        # starting game by button
+        self.game_started = False
+        self.init_screen()
+
+
+    def init_screen(self):
+        start_text = self.scene().addText("Press any key to start", QFont("Arial", 18))
+        text_width = start_text.boundingRect().width()
+        text_x = (self.width() - text_width) / 5
+        start_text.setPos(text_x, GRID_HEIGHT * CELL_SIZE / 2)
+
 
     def keyPressEvent(self, event):
         key = event.key()
@@ -37,6 +47,12 @@ class SnakeGame(QGraphicsView):
                 self.direction = key
             elif key == Qt.Key_Down and self.direction != Qt.Key_Up:
                 self.direction = key
+
+        if not self.game_started:
+            if key == event.key():
+                self.game_started = True
+                self.scene().clear()
+                self.start_game()
 
     def update_game(self):
         head_x, head_y = self.snake[0]
@@ -67,7 +83,11 @@ class SnakeGame(QGraphicsView):
             x, y = segment
             self.scene().addRect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE,
                                  CELL_SIZE, QPen(Qt.black), QBrush(Qt.black))
+<<<<<<< HEAD
+        # Print food
+=======
         # print food
+>>>>>>> 3cc37fc6c00121dc9fa80d15aa70dfab3cf11b59
         fx, fy = self.food
         self.scene().addRect(fx * CELL_SIZE, fy * CELL_SIZE, CELL_SIZE,
                              CELL_SIZE, QPen(Qt.black), QBrush(Qt.red))
@@ -84,7 +104,7 @@ class SnakeGame(QGraphicsView):
         # For score calculation
         self.score = 0
 
-    # add food
+    # Add food
     def spawn_food(self):
         while True:
             x = random.randint(0, GRID_WIDTH - 1)
