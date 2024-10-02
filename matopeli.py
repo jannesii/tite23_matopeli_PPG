@@ -74,6 +74,12 @@ class SnakeGame(QGraphicsView):
         if new_head == self.food:
             self.score += 1
             self.food = self.spawn_food()
+
+            # for levels
+            if self.score == self.level_limit:
+                self.level_limit += 5
+                self.timer_delay -= 50
+                self.timer.setInterval(self.timer_delay)
         else:
             self.snake.pop()
 
@@ -102,6 +108,10 @@ class SnakeGame(QGraphicsView):
 
         # For score calculation
         self.score = 0
+        # for levels
+        self.level_limit = 5
+        self.timer_delay = 300
+        self.timer.start(self.timer_delay)
 
     # Add food
     def spawn_food(self):
