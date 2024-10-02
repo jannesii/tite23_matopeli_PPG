@@ -115,7 +115,7 @@ class SnakeGame(QGraphicsView):
         # For score calculation
         self.score = 0
         # for levels
-        self.level_limit = 5
+        self.level_limit = 3
         self.timer_delay = 250
         self.timer.start(self.timer_delay)
 
