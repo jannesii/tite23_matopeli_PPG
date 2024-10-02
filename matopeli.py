@@ -72,6 +72,7 @@ class SnakeGame(QGraphicsView):
             self.game_over = True
             self.scene().clear()
             self.game_over_screen()
+            self.timer.stop()
             return
 
         self.snake.insert(0, new_head)
@@ -114,8 +115,8 @@ class SnakeGame(QGraphicsView):
         # For score calculation
         self.score = 0
         # for levels
-        self.level_limit = 2
-        self.timer_delay = 100
+        self.level_limit = 3
+        self.timer_delay = 250
         self.timer.start(self.timer_delay)
 
     def game_over_screen(self):
@@ -138,7 +139,6 @@ class SnakeGame(QGraphicsView):
             y = random.randint(0, GRID_HEIGHT - 1)
             if (x, y) not in self.snake:
                 return x, y
-
 def main():
     app = QApplication(sys.argv)
     game = SnakeGame()
