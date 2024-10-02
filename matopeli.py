@@ -114,8 +114,8 @@ class SnakeGame(QGraphicsView):
         # For score calculation
         self.score = 0
         # for levels
-        self.level_limit = 5
-        self.timer_delay = 300
+        self.level_limit = 2
+        self.timer_delay = 100
         self.timer.start(self.timer_delay)
 
     def game_over_screen(self):
