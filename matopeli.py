@@ -1,4 +1,4 @@
-# 'pip install PySide6' tarvitaan 
+# 'pip install PySide6' tarvitaan
 import sys
 import random
 from PySide6.QtWidgets import QApplication, QGraphicsView, QGraphicsScene, QMenu
@@ -63,14 +63,16 @@ class SnakeGame(QGraphicsView):
             x, y = segment
             self.scene().addRect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE,
                                  CELL_SIZE, QPen(Qt.black), QBrush(Qt.black))
-        #print food
+        # print food
         fx, fy = self.food
-        self.scene().addRect(fx * CELL_SIZE, fy * CELL_SIZE, CELL_SIZE, CELL_SIZE, QPen(Qt.black), QBrush(Qt.red))
-        
+        self.scene().addRect(fx * CELL_SIZE, fy * CELL_SIZE, CELL_SIZE,
+                             CELL_SIZE, QPen(Qt.black), QBrush(Qt.red))
+
     def start_game(self):
         self.direction = Qt.Key_Right
         self.snake = [(5, 5), (5, 6), (5, 7)]
         self.timer.start(300)
+        self.food = self.spawn_food()
 
     # add food
     def spawn_food(self):
@@ -78,7 +80,6 @@ class SnakeGame(QGraphicsView):
             x = random.randint(0, GRID_WIDTH - 1)
             y = random.randint(0, GRID_HEIGHT - 1)
             if (x, y) not in self.snake:
-
                 return x, y
 
 
