@@ -63,10 +63,10 @@ class SnakeGame(QGraphicsView):
             new_head = (head_x, head_y - 1)
         elif self.direction == Qt.Key_Down:
             new_head = (head_x, head_y + 1)
-            
-        #board limits
+
+        # board limits
         if new_head in self.snake or not (0 <= new_head[0] < GRID_WIDTH) or not (0 <= new_head[1] < GRID_HEIGHT):
-            self.timer.stop() 
+            self.timer.stop()
             return
 
         self.snake.insert(0, new_head)
@@ -91,7 +91,7 @@ class SnakeGame(QGraphicsView):
         for segment in self.snake:
             x, y = segment
             self.scene().addRect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE,
-                                 CELL_SIZE, QPen(Qt.black), QBrush(Qt.black))
+                                 CELL_SIZE, QPen(Qt.black), QBrush(Qt.magenta))
         # print food
         fx, fy = self.food
         self.scene().addRect(fx * CELL_SIZE, fy * CELL_SIZE, CELL_SIZE,
