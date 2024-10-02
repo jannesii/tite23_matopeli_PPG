@@ -27,13 +27,11 @@ class SnakeGame(QGraphicsView):
         self.game_started = False
         self.init_screen()
 
-
     def init_screen(self):
         start_text = self.scene().addText("Press any key to start", QFont("Arial", 18))
         text_width = start_text.boundingRect().width()
         text_x = (self.width() - text_width) / 5
         start_text.setPos(text_x, GRID_HEIGHT * CELL_SIZE / 2)
-
 
     def keyPressEvent(self, event):
         key = event.key()
@@ -66,10 +64,23 @@ class SnakeGame(QGraphicsView):
             new_head = (head_x, head_y - 1)
         elif self.direction == Qt.Key_Down:
             new_head = (head_x, head_y + 1)
+            
+        #board limits
+        if new_head in self.snake or not (0 <= new_head[0] < GRID_WIDTH) or not (0 <= new_head[1] < GRID_HEIGHT):
+            self.timer.stop() 
+            return
 
         self.snake.insert(0, new_head)
 
+<<<<<<< HEAD
         self.snake.pop()
+=======
+        if new_head == self.food:
+            self.score += 1
+            self.food = self.spawn_food()
+        else:
+            self.snake.pop()
+>>>>>>> 6758bebaf0746951157b50a02f3c0b94400e8922
 
         self.print_game()
 
@@ -85,12 +96,16 @@ class SnakeGame(QGraphicsView):
         self.scene().addRect(fx * CELL_SIZE, fy * CELL_SIZE, CELL_SIZE,
                              CELL_SIZE, QPen(Qt.black), QBrush(Qt.red))
 
+        # print score
+        self.scene().addText(f"Score: {self.score}", QFont("Arial", 12))
+
     def start_game(self):
         self.direction = Qt.Key_Right
         self.snake = [(5, 5), (5, 6), (5, 7)]
         self.timer.start(300)
         self.food = self.spawn_food()
 
+<<<<<<< HEAD
     def game_over_screen(self):
         self.game_started = False
         self.game_over = True
@@ -100,6 +115,10 @@ class SnakeGame(QGraphicsView):
         text_width = game_over_text.boundingRect().width()
         text_x = (self.width() - text_width) / 2
         game_over_text.setPos(text_x, GRID_HEIGHT * CELL_SIZE / 2)
+=======
+        # For score calculation
+        self.score = 0
+>>>>>>> 6758bebaf0746951157b50a02f3c0b94400e8922
 
     # Add food
     def spawn_food(self):
