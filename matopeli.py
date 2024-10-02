@@ -46,11 +46,12 @@ class SnakeGame(QGraphicsView):
             elif key == Qt.Key_Down and self.direction != Qt.Key_Up:
                 self.direction = key
 
-        if not self.game_started:
-            if key == event.key():
-                self.game_started = True
-                self.scene().clear()
-                self.start_game()
+        if (not self.game_started or self.game_over) and key not in (Qt.Key_Left, Qt.Key_Right, Qt.Key_Up, Qt.Key_Down):
+            self.game_started = True
+            self.game_over = False
+            self.scene().clear()
+            self.start_game()
+            return
 
     def update_game(self):
         head_x, head_y = self.snake[0]
@@ -66,7 +67,15 @@ class SnakeGame(QGraphicsView):
 
         # board limits
         if new_head in self.snake or not (0 <= new_head[0] < GRID_WIDTH) or not (0 <= new_head[1] < GRID_HEIGHT):
+<<<<<<< HEAD
+            self.timer.stop() 
+            self.game_started = False
+            self.game_over = True
+            self.scene().clear()
+            self.game_over_screen()
+=======
             self.timer.stop()
+>>>>>>> 5df0f6db7ed644592c72df970e730bf6711b5bbd
             return
 
         self.snake.insert(0, new_head)
@@ -113,6 +122,19 @@ class SnakeGame(QGraphicsView):
         self.timer_delay = 300
         self.timer.start(self.timer_delay)
 
+    def game_over_screen(self):
+        self.game_started = False
+        self.game_over = True
+        self.timer.stop()
+        self.scene().clear()
+        
+        game_over_text = self.scene().addText("               Game Over\nPress any key to start new game", QFont("Monospace", 20))
+        text_width = game_over_text.boundingRect().width()
+        text_height = game_over_text.boundingRect().height()
+        text_x = (self.sceneRect().width() - text_width) / 5
+        text_y = (self.sceneRect().height() - text_height) / 2
+        game_over_text.setPos(text_x, text_y)
+
     # Add food
     def spawn_food(self):
         while True:
@@ -120,7 +142,6 @@ class SnakeGame(QGraphicsView):
             y = random.randint(0, GRID_HEIGHT - 1)
             if (x, y) not in self.snake:
                 return x, y
-
 
 def main():
     app = QApplication(sys.argv)
