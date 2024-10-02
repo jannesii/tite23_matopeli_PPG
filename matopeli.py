@@ -83,11 +83,7 @@ class SnakeGame(QGraphicsView):
             x, y = segment
             self.scene().addRect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE,
                                  CELL_SIZE, QPen(Qt.black), QBrush(Qt.black))
-<<<<<<< HEAD
-        # Print food
-=======
         # print food
->>>>>>> 3cc37fc6c00121dc9fa80d15aa70dfab3cf11b59
         fx, fy = self.food
         self.scene().addRect(fx * CELL_SIZE, fy * CELL_SIZE, CELL_SIZE,
                              CELL_SIZE, QPen(Qt.black), QBrush(Qt.red))
